@@ -22,7 +22,7 @@ Add the namespace to the project's `components.json`:
 
 ```json
 "registries": {
-  "@bash": "https://bash-ui.vercel.app/r/{name}.json"
+  "@bash": "https://bash-ui-registry.vercel.app/r/{name}.json"
 }
 ```
 

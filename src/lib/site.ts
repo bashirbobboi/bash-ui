@@ -1,5 +1,5 @@
 /** Where the site is deployed. The registry's install URLs are built from it. */
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://bash-ui.vercel.app";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://bash-ui-registry.vercel.app";
 
 /** The shadcn namespace a consuming project registers this site under. */
 export const NAMESPACE = "@bash";
