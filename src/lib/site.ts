@@ -13,3 +13,10 @@ export function installCommand(...names: string[]): string {
 export function themeItemName(slug: string): string {
   return `theme-${slug}`;
 }
+
+/** Where to find the person behind the site, shown in the header. */
+export const AUTHOR_LINKS = {
+  github: "https://github.com/bashirbobboi",
+  x: "https://x.com/bashirbobboi",
+  portfolio: "https://bashir.is-a.dev",
+} as const;

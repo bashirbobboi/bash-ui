@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AuthorLinks } from "./author-links";
 import { BrandMark } from "./brand-mark";
 import { ModeToggle } from "./mode-toggle";
 import { NavPills } from "./nav-pills";
@@ -23,6 +24,7 @@ export function SiteHeader() {
           <NavPills />
         </div>
         <div className="flex shrink-0 items-center gap-2">
+          <AuthorLinks />
           <ModeToggle />
         </div>
       </div>

@@ -64,6 +64,11 @@ companies. The Claude, ChatGPT, Cursor and Replit renderings are from
 Some components started from other people's work. Each one's page, and its
 `meta.ts`, names the source and licence.
 
+## Author
+
+Made by Bashir Bobboi: [GitHub](https://github.com/bashirbobboi) ·
+[X](https://x.com/bashirbobboi) · [bashir.is-a.dev](https://bashir.is-a.dev)
+
 ## Licence
 
 Code is [MIT](LICENSE). Images, logos, screenshots and media in `public/` are
