@@ -1,0 +1,1 @@
+bash-ui: design systems and components from real projects, with its ghost mascot

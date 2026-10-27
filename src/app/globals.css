@@ -1,0 +1,317 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Registry components live outside src/; Tailwind must still see their classes. */
+@source "../../registry";
+
+/**
+ * Dark mode follows a `.dark` class (set by next-themes on <html>), never the
+ * OS media query, so the mode switch in the header is the only authority.
+ * Inside a `[data-mode="light"]` island (the playground's preview showing light
+ * on a dark page) it is off again; `:where` keeps the specificity unchanged.
+ */
+@custom-variant dark (&:is(.dark *):not(:where([data-mode="light"] *)));
+
+/**
+ * The token contract (src/themes/contract.ts), mapped to Tailwind utilities.
+ * Values come from whichever `[data-theme]` scope an element sits in; the
+ * layout renders every theme's scope, and <html> defaults to "neutral".
+ * `npm run check` fails if a contract token is missing here.
+ */
+@theme inline {
+  /* Surfaces */
+  --color-ground: var(--ground);
+  --color-background: var(--background);
+  --color-card: var(--card);
+  --color-popover: var(--popover);
+  --color-paper: var(--paper);
+  --color-paper-sunk: var(--paper-sunk);
+  --color-muted: var(--muted);
+  --color-secondary: var(--secondary);
+
+  /* Lines */
+  --color-rule: var(--rule);
+  --color-rule-soft: var(--rule-soft);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Ink */
+  --color-ink: var(--ink);
+  --color-foreground: var(--foreground);
+  --color-dim: var(--dim);
+  --color-faint: var(--faint);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-on-solid: var(--on-solid);
+
+  /* Accent */
+  --color-lead: var(--lead);
+  --color-lead-mid: var(--lead-mid);
+  --color-lead-wash: var(--lead-wash);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  /* States */
+  --color-go: var(--go);
+  --color-go-wash: var(--go-wash);
+  --color-hold: var(--hold);
+  --color-hold-wash: var(--hold-wash);
+  --color-stop: var(--stop);
+  --color-stop-wash: var(--stop-wash);
+  --color-destructive: var(--destructive);
+
+  /* Ramp */
+  --color-ramp-orange: var(--ramp-orange);
+  --color-collection-landlord: var(--collection-landlord);
+  --color-collection-platform: var(--collection-platform);
+  --color-collection-processing: var(--collection-processing);
+  --color-menu-surface: var(--menu-surface);
+  --color-menu-symbol: var(--menu-symbol);
+  --color-menu-shadow: var(--menu-shadow);
+  --color-menu-sheen-mid: var(--menu-sheen-mid);
+  --color-menu-footer-rule: var(--menu-footer-rule);
+
+  --color-menu-ink: var(--menu-ink);
+  --color-menu-dim: var(--menu-dim);
+  --color-menu-rule: var(--menu-rule);
+  --color-menu-sheen: var(--menu-sheen);
+
+  --color-ff-plate: var(--ff-plate);
+  --color-ff-plate-edge: var(--ff-plate-edge);
+  --color-ff-ink: var(--ff-ink);
+  --color-ff-dim: var(--ff-dim);
+  --color-ff-faint: var(--ff-faint);
+  --color-ff-rule: var(--ff-rule);
+  --color-ff-residual: var(--ff-residual);
+  --color-ff-in-0: var(--ff-in-0);
+  --color-ff-in-1: var(--ff-in-1);
+  --color-ff-in-2: var(--ff-in-2);
+  --color-ff-in-3: var(--ff-in-3);
+  --color-ff-in-4: var(--ff-in-4);
+  --color-ff-in-5: var(--ff-in-5);
+  --color-ff-out-0: var(--ff-out-0);
+  --color-ff-out-1: var(--ff-out-1);
+  --color-ff-out-2: var(--ff-out-2);
+  --color-ff-out-3: var(--ff-out-3);
+  --color-ff-out-4: var(--ff-out-4);
+  --color-ff-out-5: var(--ff-out-5);
+
+  --color-milestone-yellow: var(--milestone-yellow);
+  --color-go-pale: var(--go-pale);
+  --color-slider-handle: var(--slider-handle);
+  --color-switch-track-off: var(--switch-track-off);
+  --color-switch-track-on: var(--switch-track-on);
+  --color-switch-thumb-off: var(--switch-thumb-off);
+  --color-switch-thumb-on: var(--switch-thumb-on);
+  --color-activity-0: var(--activity-0);
+  --color-activity-1: var(--activity-1);
+  --color-activity-2: var(--activity-2);
+  --color-activity-3: var(--activity-3);
+  --color-activity-4: var(--activity-4);
+
+  /* Brand */
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-lime: var(--lime);
+  --color-lime-hover: var(--lime-hover);
+  --color-on-lime: var(--on-lime);
+  --color-tonal: var(--tonal);
+  --color-on-tonal: var(--on-tonal);
+  --color-media-fill: var(--media-fill);
+  --color-on-media: var(--on-media);
+  /* Resting media colours are independent of the dark scrim over footage. */
+  --color-media-rest-fill: var(--media-rest-fill);
+  --color-media-rest-ink: var(--media-rest-ink);
+  --color-scramble-strike: var(--scramble-strike);
+
+  /* Shape and type, per theme */
+  --radius-panel: var(--panel-radius);
+  --radius-inset: var(--inset-radius);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --font-body: var(--body-font);
+  --font-heading: var(--heading-font);
+  --font-mono: var(--code-font);
+  --font-interface: var(--interface-font);
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  [data-theme] {
+    color: var(--foreground);
+    font-family: var(--body-font);
+  }
+
+  body {
+    background: var(--site-bg);
+    color: var(--foreground);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--lead-wash);
+    color: var(--ink);
+  }
+}
+
+/**
+ * ─── Site chrome ────────────────────────────────────────────────────────
+ * The showcase's own surfaces, adapted from libraries.dev (Jakub Antalik,
+ * MIT). These are not part of the token contract and never ship in the
+ * registry: they style the gallery around the components, not the components.
+ *
+ * Light values first, dark under `.dark`. Raised things are lit from above
+ * (an inset top highlight plus a tight drop), never outlined.
+ */
+:root {
+  --site-bg: #fdfdfd;
+  --site-stage: #f9f9f9;
+  --site-chip: rgba(0, 0, 0, 0.04);
+  --site-chip-hover: rgba(0, 0, 0, 0.06);
+  --site-chip-active: #ffffff;
+  --site-raised-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.04),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.06),
+    inset 0 -1px 0 0 rgba(0, 0, 0, 0.06);
+  --site-tile: linear-gradient(180deg, #ffffff, #f3f3f3);
+  --site-tile-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.08), inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  /* The passing ring on a tile a link pointed at. */
+  --site-mark: rgba(0, 0, 0, 0.24);
+  --site-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  /* The pinned header's height; the sidebar pins itself directly beneath it. */
+  --header-h: 72px;
+}
+
+@media (min-width: 900px) {
+  :root {
+    --header-h: 88px;
+  }
+}
+
+html {
+  /* In-page jumps land below the pinned header, not under it. */
+  scroll-padding-top: var(--header-h);
+}
+
+.dark {
+  --site-bg: #121212;
+  --site-stage: #171717;
+  --site-chip: rgba(255, 255, 255, 0.06);
+  --site-chip-hover: rgba(255, 255, 255, 0.1);
+  --site-chip-active: rgba(255, 255, 255, 0.08);
+  --site-raised-shadow:
+    0 1px 1px 0 rgba(0, 0, 0, 0.24),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.06);
+  --site-tile: linear-gradient(180deg, #303030, #232323);
+  --site-tile-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.5), inset 0 1px 0 0 rgba(255, 255, 255, 0.08), inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --site-mark: rgba(255, 255, 255, 0.3);
+}
+
+@utility site-chip {
+  background: var(--site-chip);
+  transition: background-color 140ms var(--site-ease), color 140ms var(--site-ease);
+  &:hover {
+    background: var(--site-chip-hover);
+  }
+}
+
+@utility site-raised {
+  background: var(--site-chip-active);
+  box-shadow: var(--site-raised-shadow);
+}
+
+@utility site-tile {
+  background: var(--site-tile);
+  box-shadow: var(--site-tile-shadow);
+}
+
+@utility site-stage {
+  background: var(--site-stage);
+}
+
+/*
+ * The docs rail scrolls on its own with its scrollbar hidden, so it fades at
+ * whichever end has more links past it, driven by the rail's own scroll
+ * position. A rail that fits, or a browser without scroll-driven animations,
+ * gets no fade. Desktop only: below 900px the rail is a chip strip that bleeds
+ * past its box, and a mask would clip the bleed.
+ */
+@property --rail-fade-top {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@property --rail-fade-bottom {
+  syntax: "<length>";
+  inherits: false;
+  initial-value: 0px;
+}
+
+@keyframes site-rail-fade {
+  0% {
+    --rail-fade-top: 0px;
+    --rail-fade-bottom: 40px;
+  }
+  8% {
+    --rail-fade-top: 40px;
+  }
+  92% {
+    --rail-fade-bottom: 40px;
+  }
+  100% {
+    --rail-fade-top: 40px;
+    --rail-fade-bottom: 0px;
+  }
+}
+
+@utility site-rail-fade {
+  @media (min-width: 900px) {
+    @supports (animation-timeline: scroll()) {
+      mask-image: linear-gradient(
+        to bottom,
+        transparent,
+        black var(--rail-fade-top),
+        black calc(100% - var(--rail-fade-bottom)),
+        transparent
+      );
+      /* Any duration spans the whole scroll range; `auto` is minified away. */
+      animation: site-rail-fade 1ms linear both;
+      animation-timeline: scroll(self);
+    }
+  }
+}
+
+/* The playground's controls panel: a step above the stage, lit at the rim. */
+@utility site-panel {
+  background: var(--site-panel);
+  box-shadow: var(--site-panel-shadow);
+}
+
+:root {
+  --site-panel: #ffffff;
+  --site-panel-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.04), inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+.dark {
+  --site-panel: #1b1b1b;
+  --site-panel-shadow:
+    0 2px 6px 0 rgba(0, 0, 0, 0.05),
+    0 4px 42px 0 rgba(0, 0, 0, 0.24),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.02);
+}
+

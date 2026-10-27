@@ -1,0 +1,30 @@
+import type { ItemMeta } from "../../types.ts";
+
+export const meta: ItemMeta = {
+  name: "searchable-select",
+  title: "Searchable select",
+  kind: "primitive",
+  category: "inputs",
+  type: "registry:ui",
+  description: "A single-choice dropdown with a search field above a grouped, scrollable list of options.",
+  whenToUse: "Use for choosing one client, place or category from a long list. Filters immediately by label, group or keywords; supports arrow keys, Enter and Escape.",
+  files: ["registry/items/searchable-select/searchable-select.tsx"],
+  dependencies: ["lucide-react"],
+  origin: { project: "180Connect", path: "src/components/ui/searchable-select.tsx" },
+  credits: [],
+  props: [
+    { name: "id", type: "string", description: "Unique control ID for labels and accessible option references." },
+    { name: "value", type: "string", description: "Selected option value." },
+    { name: "onChange", type: "(value: string) => void", description: "Called when an option is chosen." },
+    { name: "groups", type: "readonly SearchableOptionGroup[]", description: "Named groups of options with value, label and optional search keywords." },
+    { name: "placeholder", type: "string", description: "Trigger text before a choice is made." },
+    { name: "searchPlaceholder", type: "string", description: "Prompt and accessible label for the search field." },
+    { name: "disabled", type: "boolean", description: "Prevents opening the picker." },
+    { name: "allowCustom", type: "boolean", description: "Offers the typed text as a choice. Off by default." },
+    { name: "extraGroups", type: "readonly SearchableOptionGroup[]", description: "Additional results above the filtered list; not filtered again." },
+    { name: "onQueryChange", type: "(query: string) => void", description: "Reports search text for externally supplied results." },
+    { name: "searchHint", type: "ReactNode", description: "Optional hint under the search field." },
+    { name: "emptyMessage", type: "string", description: "Text when there are no results." },
+    { name: "unlistedLabel", type: "string", description: "Explains a selected value missing from the supplied options." },
+  ],
+};

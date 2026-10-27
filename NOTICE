@@ -1,0 +1,41 @@
+bash-ui
+Copyright (c) 2026 Bashir Bobboi
+
+The source code in this repository is licensed under the MIT License (see
+LICENSE), except where a file or its `meta.ts` names a different licence.
+
+NOT COVERED BY THE MIT LICENSE
+
+The following files are included only to illustrate the components in the
+gallery. They are not part of the installable registry, are not licensed under
+MIT, and remain the property of their respective owners. Do not reuse them
+without the owner's permission.
+
+  public/agents/      AI tool logos, trademarks of their companies; some
+                      renderings from Icons8 (https://icons8.com)
+  public/brands/      project and organisation marks
+  public/demo/        screenshots of the author's own projects
+  public/portfolio/   the author's photo and artwork; university, employer
+                      and Premier League marks; technology logos
+  public/steeze/      Steeze product, category and promotional media
+
+Trademarks shown belong to their owners. Their appearance does not imply
+endorsement.
+
+FONTS
+
+  public/fonts/open-runde/   Open Runde by Laurids Kern, SIL Open Font
+                             License 1.1 (see the LICENSE.txt beside it)
+
+COMPONENT SOURCES
+
+Some components are adapted from other people's work. Each component's page
+and its `registry/items/<name>/meta.ts` name the source and its licence.
+Notably, `radial-nav` is adapted from a component under MIT with the Commons
+Clause, which forbids selling it.
+
+REMOVAL REQUESTS
+
+If you own something in this repository and want it credited differently or
+removed, open an issue at https://github.com/bashirbobboi/bash-ui/issues and it
+will be dealt with promptly.
