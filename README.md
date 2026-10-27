@@ -18,19 +18,20 @@ anything shown here can be installed into a new project with one command.
 
 ## Using it in a project
 
-Add the namespace to the project's `components.json`:
+`@bash` is in shadcn's registry index, so there is nothing to set up:
+
+```bash
+npx shadcn@latest add @bash/theme-180connect     # a design system
+npx shadcn@latest add @bash/stick-progress-bar  # a component
+```
+
+On a shadcn CLI from before the registry index, add the namespace to the
+project's `components.json` first:
 
 ```json
 "registries": {
   "@bash": "https://bash-ui-registry.vercel.app/r/{name}.json"
 }
-```
-
-Then:
-
-```bash
-npx shadcn@latest add @bash/theme-180connect     # a design system
-npx shadcn@latest add @bash/stick-progress-bar  # a component
 ```
 
 ## Working on it

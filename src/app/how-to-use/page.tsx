@@ -4,7 +4,7 @@ import { AgentNote } from "@/components/site/agent-note";
 import { PageTitle } from "@/components/site/cards";
 import { CodeBlock, CommandLine } from "@/components/site/code-block";
 import { PanelGroup } from "@/components/site/detail";
-import { REGISTRY_CONFIG, SITE_URL, installCommand, themeItemName } from "@/lib/site";
+import { REGISTRY_CONFIG, REGISTRY_FALLBACK, SITE_URL, installCommand, themeItemName } from "@/lib/site";
 
 export const metadata: Metadata = { title: "How to use" };
 
@@ -17,14 +17,7 @@ export default function HowToUse() {
       />
 
       <div className="site-stage space-y-6 rounded-2xl p-3 sm:p-4">
-        <PanelGroup title="1 · Register the namespace once">
-          <p className="px-1 text-[13px] leading-5 text-dim">
-            In the project&apos;s <code className="font-mono text-ink">components.json</code>:
-          </p>
-          <CodeBlock code={REGISTRY_CONFIG} />
-        </PanelGroup>
-
-        <PanelGroup title="2 · Pick a design system">
+        <PanelGroup title="1 · Pick a design system">
           <CommandLine command={installCommand(themeItemName("180connect"))} />
           <p className="px-1 text-[13px] leading-5 text-dim">
             It writes every colour into <code className="font-mono text-ink">:root</code> and{" "}
@@ -37,11 +30,16 @@ export default function HowToUse() {
           </p>
         </PanelGroup>
 
-        <PanelGroup title="3 · Add components">
+        <PanelGroup title="2 · Add components">
           <CommandLine command={installCommand("score-gauge")} />
           <p className="px-1 text-[13px] leading-5 text-dim">
             The source is copied into your project. It is yours to change from then on.
           </p>
+        </PanelGroup>
+
+        <PanelGroup title="On an older shadcn CLI">
+          <p className="px-1 text-[13px] leading-5 text-dim">{REGISTRY_FALLBACK}</p>
+          <CodeBlock code={REGISTRY_CONFIG} label="components.json" />
         </PanelGroup>
 
         <PanelGroup title="With an agent">

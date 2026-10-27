@@ -1,7 +1,7 @@
 import { ITEMS } from "@/registry/items";
 import { THEMES } from "@/themes";
 import { TOKENS } from "@/themes/contract";
-import { NAMESPACE, REGISTRY_CONFIG, SITE_URL, installCommand, themeItemName } from "./site";
+import { NAMESPACE, REGISTRY_CONFIG, REGISTRY_FALLBACK, SITE_URL, installCommand, themeItemName } from "./site";
 
 /**
  * The index an agent reads before starting a project: which design systems
@@ -17,15 +17,15 @@ export function agentIndex(): string {
     "## How to use this",
     "",
     "1. Pick a design system below, or ask the person which project's look they want.",
-    "2. In the project's components.json, add:",
+    `2. Install the theme: \`${installCommand(themeItemName("<slug>"))}\`, then load its fonts with next/font.`,
+    `3. Install components as needed: \`${installCommand("<name>")}\`.`,
+    "4. Follow the system's rules when composing new screens. Use only contract tokens (below) for colour, never hex or Tailwind palette colours.",
+    "",
+    REGISTRY_FALLBACK,
     "",
     "```json",
     REGISTRY_CONFIG,
     "```",
-    "",
-    `3. Install the theme: \`${installCommand(themeItemName("<slug>"))}\`, then load its fonts with next/font.`,
-    `4. Install components as needed: \`${installCommand("<name>")}\`.`,
-    "5. Follow the system's rules when composing new screens. Use only contract tokens (below) for colour, never hex or Tailwind palette colours.",
     "",
     `Every item's JSON (source included) is at ${SITE_URL}/r/<name>.json; the full list is ${SITE_URL}/r/registry.json.`,
     "",

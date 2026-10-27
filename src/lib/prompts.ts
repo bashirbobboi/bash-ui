@@ -1,7 +1,7 @@
 import type { ItemMeta } from "@/registry/types";
 import { TOKENS } from "@/themes/contract";
 import type { Theme, ThemeFont } from "@/themes/types";
-import { NAMESPACE, REGISTRY_CONFIG, SITE_URL, installCommand, themeItemName } from "./site";
+import { REGISTRY_CONFIG, REGISTRY_FALLBACK, SITE_URL, installCommand, themeItemName } from "./site";
 
 /**
  * Who a prompt is written for, and what about them changes it:
@@ -181,9 +181,9 @@ export function componentPrompt(meta: ItemMeta, agent: Agent, theme: Theme, sour
     return [
       `Add the "${meta.title}" component from my bash-ui registry to this project.`,
       "",
-      `1. If components.json has no "${NAMESPACE}" registry yet, add:`,
+      `Run: ${installCommand(meta.name)}`,
+      REGISTRY_FALLBACK,
       REGISTRY_CONFIG,
-      `2. Run: ${installCommand(meta.name)}`,
       ...(agent.note ? ["", agent.note] : []),
       "",
       ...about,
@@ -225,7 +225,7 @@ export function mixPrompt(theme: Theme, agent: Agent, parts: string[]): string {
     `${themeLine}\n${css}`,
     fontStep(theme, agent),
     ...(parts.length
-      ? [`Add the components I picked. If components.json has no "${NAMESPACE}" registry yet, add:\n${REGISTRY_CONFIG}\nThen run: ${installCommand(...parts)}`]
+      ? [`Add the components I picked: ${installCommand(...parts)}\n${REGISTRY_FALLBACK}\n${REGISTRY_CONFIG}`]
       : []),
     ...(save ? [save] : []),
   ];
@@ -254,11 +254,12 @@ export function systemPrompt(theme: Theme, agent: Agent): string {
     return [
       `Set this project up in the "${theme.name}" design system from my bash-ui registry (made for ${theme.project}).`,
       "",
-      `1. If components.json has no "${NAMESPACE}" registry yet, add:`,
+      `1. Run: ${installCommand(themeItemName(theme.slug))}`,
+      `2. ${fontStep(theme, agent)}`,
+      ...(save ? [`3. ${save}`] : []),
+      "",
+      REGISTRY_FALLBACK,
       REGISTRY_CONFIG,
-      `2. Run: ${installCommand(themeItemName(theme.slug))}`,
-      `3. ${fontStep(theme, agent)}`,
-      ...(save ? [`4. ${save}`] : []),
       ...(agent.note ? ["", agent.note] : []),
       "",
       ...body,

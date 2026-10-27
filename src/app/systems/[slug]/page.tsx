@@ -13,7 +13,7 @@ import { TabbedPanels } from "@/components/site/tabbed-panels";
 import { ThemeScene } from "@/components/site/theme-scene";
 import { ThemeAccessibility } from "@/components/site/theme-accessibility";
 import { Tile, TileGrid } from "@/components/site/tiles";
-import { REGISTRY_CONFIG, installCommand, themeItemName } from "@/lib/site";
+import { installCommand, themeItemName } from "@/lib/site";
 import { ITEMS } from "@/registry/items";
 import { THEMES, getTheme } from "@/themes";
 import { TOKENS, TOKEN_GROUP_LABELS, type TokenGroup } from "@/themes/contract";
@@ -200,9 +200,6 @@ function Install({ theme }: { theme: Theme }) {
   );
   return (
     <div className="site-stage space-y-6 rounded-2xl p-3 sm:p-4">
-      <PanelGroup title="Register the namespace">
-        <CodeBlock code={REGISTRY_CONFIG} label="components.json" />
-      </PanelGroup>
       <PanelGroup title="Install the system">
         <CommandLine command={installCommand(themeItemName(theme.slug))} />
         <p className="px-1 text-[13px] leading-5 text-dim">

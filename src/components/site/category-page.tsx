@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { CATEGORIES } from "@/lib/categories";
 import type { ItemSource, ShippedFile } from "@/lib/prompts";
-import { REGISTRY_CONFIG, installCommand } from "@/lib/site";
+import { installCommand } from "@/lib/site";
 import { ITEMS } from "@/registry/items";
 import type { ItemCategory, ItemMeta } from "@/registry/types";
 import { THEMES } from "@/themes";
@@ -160,13 +160,7 @@ async function InstallPanel({ meta }: { meta: ItemMeta }) {
   return (
     <>
       <PanelGroup title="Installation">
-        <div className="space-y-2">
-          <CommandLine command={installCommand(meta.name)} />
-          <p className="px-1 text-[12.5px] leading-5 text-dim">
-            First time in a project? Register the namespace in <code className="font-mono text-ink">components.json</code>:
-          </p>
-          <CodeBlock code={REGISTRY_CONFIG} />
-        </div>
+        <CommandLine command={installCommand(meta.name)} />
       </PanelGroup>
 
       <PanelGroup title="What it is">
