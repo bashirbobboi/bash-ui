@@ -1,5 +1,9 @@
 # bash-ui
 
+**Live:** [bash-ui-registry.vercel.app](https://bash-ui-registry.vercel.app)
+
+[![bash-ui components gallery](.github/screenshot.png)](https://bash-ui-registry.vercel.app/components)
+
 My design systems and the components worth keeping from each project, in one
 place. It is a showcase site and a [shadcn registry](https://ui.shadcn.com/docs/registry):
 anything shown here can be installed into a new project with one command.
